@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Member Info</title>
+</head>
+<body>
+
+<h1>Member Information</h1>
+
+<div>
+  <p><strong>Username:</strong> <span th:text="${member.username}"></span></p>
+  <p><strong>Email:</strong> <span th:text="${member.email}"></span></p>
+  <!-- 필요한 다른 필드들 추가 -->
+</div>
+
+<div>
+  <a th:href="@{/members/list}">Back to Member List</a>
+</div>
+
+</body>
+</html>
