@@ -7,4 +7,5 @@ import article.projectNum1.member.entity.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
+	Member findByUsername(String username);
 }

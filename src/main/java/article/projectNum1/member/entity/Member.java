@@ -26,6 +26,8 @@ public class Member {
 	private String email;
 	private String password;
 
+	private MemberRole role;
+
 	@OneToMany(mappedBy = "member", cascade = ALL)
 	private List<Write> writes = new ArrayList<>();
 
