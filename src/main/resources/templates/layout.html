@@ -14,11 +14,15 @@
     <a class="navbar-brand" href="/">홈</a>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
+        <!-- 사용자 로그인 상태 확인 -->
         <li class="nav-item" th:if="${username != null}">
           <span class="navbar-text">환영합니다, <span th:text="${username}"></span>님!</span>
         </li>
         <li class="nav-item" th:if="${username != null}">
-          <a class="nav-link" href="/logout">로그아웃</a>
+          <!-- 로그아웃 버튼을 폼으로 구현 -->
+          <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-link nav-link">로그아웃</button>
+          </form>
         </li>
         <li class="nav-item" th:if="${username == null}">
           <a class="nav-link" href="/login">로그인을 해주세요</a>

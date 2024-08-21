@@ -44,9 +44,17 @@ public class LoginController {
 		cookie.setMaxAge(60 * 30); // 30분
 		response.addCookie(cookie);
 
-		return "index";
+		return "redirect:/";
 	}
+
 	/*
 	로그아웃 기능
 	 */
+	@PostMapping("/logout")
+	public String logout(HttpServletResponse response) {
+		Cookie cookie = new Cookie("username",null);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		return "redirect:/";
+	}
 }
