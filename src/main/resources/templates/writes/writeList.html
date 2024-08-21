@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
   <meta charset="UTF-8">
   <title>Write List</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Write List</h1>
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Created at</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="write : ${writes}">
-    <td th:text="${write.id}">1</td>
-    <td><a th:href="@{/writes/{id}(id=${write.id})}" th:text="${write.title}">Title</a></td>
-    <td th:text="${write.member.username}">Author</td>
-    <td th:text="${#temporals.format(write.create_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</td>
-  </tr>
-  </tbody>
-</table>
+<div layout:fragment="body">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Write List</h1>
 
-<div>
-  <a th:href="@{/writes/new}">Create New Write</a>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Created at</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="write : ${writes}">
+        <td th:text="${write.id}">1</td>
+        <td><a th:href="@{/writes/{id}(id=${write.id})}" th:text="${write.title}">Title</a></td>
+        <td th:text="${write.member.username}">Author</td>
+        <td th:text="${#temporals.format(write.create_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+      <a th:href="@{/writes/new}" class="btn btn-primary">Create New Write</a>
+    </div>
+  </div>
 </div>
 </body>
 </html>

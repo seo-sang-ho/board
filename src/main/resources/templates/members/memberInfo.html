@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
   <title>Member Info</title>
 </head>
 <body>
-
-<h1>Member Information</h1>
-
-<div>
-  <p><strong>Username:</strong> <span th:text="${member.username}"></span></p>
-  <p><strong>Email:</strong> <span th:text="${member.email}"></span></p>
-  <!-- 필요한 다른 필드들 추가 -->
+<div layout:fragment="body">
+  <div class="container mt-5">
+    <h1 class="text-center">Member Information</h1>
+    <div class="card mt-4">
+      <div class="card-body">
+        <p><strong>Username:</strong> <span th:text="${member.username}" class="ml-2"></span></p>
+        <p><strong>Email:</strong> <span th:text="${member.email}" class="ml-2"></span></p>
+        <!-- 필요한 다른 필드들 추가 -->
+      </div>
+    </div>
+    <div class="mt-4 text-center">
+      <a th:href="@{/members/list}" class="btn btn-secondary">Back to Member List</a>
+    </div>
+  </div>
 </div>
-
-<div>
-  <a th:href="@{/members/list}">Back to Member List</a>
-</div>
-
 </body>
 </html>

@@ -1,45 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
   <meta charset="UTF-8">
   <title>Write Details</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Write Details</h1>
-<div>
-  <h2 th:text="${write.title}">Title</h2>
-  <p><strong>Author:</strong> <span th:text="${write.member.username}">Author Name</span></p>
-  <p><strong>Content:</strong></p>
-  <p th:text="${write.content}">Content goes here...</p>
-  <p><strong>Created at:</strong> <span th:text="${#temporals.format(write.create_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</span></p>
-  <p><strong>Last modified:</strong> <span th:text="${#temporals.format(write.modify_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</span></p>
-</div>
+<div layout:fragment="body">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Write Details</h1>
 
-<!-- 댓글 작성 폼 -->
-<h3>Leave a Comment</h3>
-<form th:action="@{/comments/new}" method="post">
-  <input type="hidden" name="writeId" th:value="${write.id}" />
-  <!-- 실제 애플리케이션에서는 사용자가 로그인하고, 그 정보를 모델에 추가한 후, 해당 사용자 ID를 자동으로 입력하거나 세션에서 가져와야 합니다. -->
-  <label for="memberId">Member ID:</label>
-  <input type="number" id="memberId" name="memberId" required />
-  <div>
-    <label for="comment">Comment:</label>
-    <textarea id="comment" name="comment" required></textarea>
+    <div class="mb-4">
+      <h2 th:text="${write.title}">Title</h2>
+      <p><strong>Author:</strong> <span th:text="${write.member.username}">Author Name</span></p>
+      <p><strong>Content:</strong></p>
+      <p th:text="${write.content}">Content goes here...</p>
+      <p><strong>Created at:</strong> <span th:text="${#temporals.format(write.create_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</span></p>
+      <p><strong>Last modified:</strong> <span th:text="${#temporals.format(write.modify_at, 'yyyy-MM-dd HH:mm')}">2023-08-13 12:00</span></p>
+    </div>
+
+    <!-- 댓글 작성 폼 -->
+    <h3>Leave a Comment</h3>
+    <form th:action="@{/comments/new}" method="post" class="mb-4">
+      <input type="hidden" name="writeId" th:value="${write.id}" />
+      <div class="form-group">
+        <label for="memberId">Member ID:</label>
+        <input type="number" id="memberId" name="memberId" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- 댓글 목록 -->
+    <h3>Comments</h3>
+    <ul class="list-unstyled">
+      <li th:each="comment : ${write.comments}" class="mb-3">
+        <div class="border p-3 rounded">
+          <p><strong>Comment by:</strong> <span th:text="${comment.member.username}">Username</span></p>
+          <p th:text="${comment.comment}">Comment ...</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="mt-4 text-center">
+      <a th:href="@{/writes/list}" class="btn btn-secondary">Back to list</a>
+    </div>
   </div>
-  <button type="submit">Submit</button>
-</form>
-
-<!-- 댓글 목록 -->
-<h3>Comments</h3>
-<ul>
-  <li th:each="comment : ${write.comments}">
-    <p><strong>Comment by:</strong> <span th:text="${comment.member.username}">Username</span></p>
-    <p th:text="${comment.comment}">Comment ...</p>
-  </li>
-</ul>
-
-<div>
-  <a th:href="@{/writes/list}">Back to list</a>
 </div>
 </body>
 </html>

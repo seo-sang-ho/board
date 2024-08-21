@@ -70,6 +70,6 @@ public class MemberController {
 	public String deleteMember(@PathVariable("id") Long id) {
 		Member findMember = memberService.findById(id);
 		memberService.delete(findMember);
-		return "redirect:/";
+		return "redirect:/members/list";
 	}
 }
