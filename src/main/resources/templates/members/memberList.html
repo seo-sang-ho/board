@@ -18,6 +18,7 @@
   </tr>
   </thead>
   <tbody>
+  <p>Logged in as: <span th:text="${username}">User</span></p>
   <tr th:each="member : ${members}">
     <td th:text="${member.id}"></td>
     <td th:text="${member.username}"></td>
