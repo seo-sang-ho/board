@@ -12,9 +12,28 @@
   <!-- 상단 네비게이션 바 -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">홈</a>
-    <div class="collapse navbar-collapse justify-content-end">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <!-- 공통 네비게이션 메뉴 -->
+        <li class="nav-item">
+          <a class="nav-link" href="/members/new">회원 가입</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/members/list">회원 목록</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/writes/new">새 글 작성</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/writes/list">글 목록</a>
+        </li>
+      </ul>
+
+      <!-- 사용자 로그인 상태 확인 -->
       <ul class="navbar-nav">
-        <!-- 사용자 로그인 상태 확인 -->
         <li class="nav-item" th:if="${username != null}">
           <span class="navbar-text">환영합니다, <span th:text="${username}"></span>님!</span>
         </li>
