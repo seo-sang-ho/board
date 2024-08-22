@@ -83,7 +83,6 @@ public class WriteController {
 	public String deleteWrite(@PathVariable("id") Long id) {
 		Write findWrite = writeService.findById(id);
 		writeService.delete(findWrite);
-		
 		return "redirect:/writes/list";
 	}
 }
